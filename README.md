@@ -22,7 +22,7 @@ Selecting the number of matches (\(k\)) for each treated unit is challenging, es
 There are several approaches to implement optimal or approximate 1-to-many matching:
 
 ### 1. Min-Cost Max-Flow (Optimal 1-to-\(k\))
-This generalizes the assignment problem using min-cost max-flow algorithms. Each treated unit supplies \(k\) units, each control can be used at most once, and edges are weighted by matching costs. Solving the network flow problem yields a globally optimal assignment under all constraints. This is well-established and implemented in R’s `optmatch`, Python’s `networkx`, and other optimization libraries ([Hansen 2007](https://doi.org/10.1198/000313007X208407), [Kallus 2020](https://jmlr.org/papers/volume21/19-120/19-120.pdf), [Stuart 2010](https://www.jstor.org/stable/41057590)).
+This generalizes the assignment problem using min-cost max-flow algorithms. Each treated unit supplies \(k\) units, each control can be used at most once, and edges are weighted by matching costs. Solving the network flow problem yields a globally optimal assignment under all constraints. This is well-established and implemented in R’s `optmatch`, Python’s `networkx`, and other optimization libraries ([Kallus 2020](https://jmlr.org/papers/volume21/19-120/19-120.pdf)).
 
 ### 2. Sequential Hungarian (Greedy, Iterative)
 A more practical, though heuristic, approach is to run the Hungarian algorithm iteratively: in each of \(k\) rounds, solve the 1-to-1 problem, record matches, and remove matched controls. This is locally optimal at each step and straightforward to implement, but does not guarantee a globally optimal solution. Variants are used for quick matching in large datasets ([Abadie & Imbens 2016](https://www.jstor.org/stable/43896414)).
